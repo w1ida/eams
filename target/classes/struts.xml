@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+    <constant name="struts.enable.DynamicMethodInvocation" value="true"/>
+    <constant name="struts.devMode" value="true"/>
+    <constant name="struts.objectFactory" value="spring" />
+    <constant name="struts.action.excludePattern" value="/static/.*?" /><!-- default locale -->
+    <!--
+    <package name="user" namespace="/" extends="struts-default">
+        <global-allowed-methods>regex:.*</global-allowed-methods>
+        <action name="user_*" class="userAction" method="{1}">
+            <result name="success">/success.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+    </package>-->
+    <package name="userapi" namespace="/api" extends="json-default">
+        <interceptors>
+            <interceptor name="teai" class="interceptor.TeacherInterceptor"/>
+            <interceptor name="stdi" class="interceptor.StudentInterceptor"/>
+            <interceptor name="depi" class="interceptor.DepartmentInterceptor"/>
+        </interceptors>
+        <global-allowed-methods>regex:.*</global-allowed-methods>
+        <action name="user_*" class="userApi" method="{1}">
+            <result name="success" type="json">
+                <!--root是ognl表达式的一部分不能更换  -->
+                <param name="root">data</param>
+            </result>
+        </action>
+        <action name="usermgr_student_*" class="studentMgrApi" method="{1}">
+            <result name="success" type="json">
+                <param name="root">data</param>
+            </result>
+            <interceptor-ref name="depi"/>
+        </action>
+        <action name="usermgr_teacher_*" class="teacherMgrApi" method="{1}">
+            <result name="success" type="json">
+                <param name="root">data</param>
+            </result>
+            <interceptor-ref name="depi"/>
+        </action>
+       <action name="usermgr_department_*" class="departmentMgrApi" method="{1}">
+            <result name="success" type="json">
+                <param name="root">data</param>
+            </result>
+           <interceptor-ref name="depi"/>
+        </action>
+        <action name="classmgr_*" class="classMgrApi" method="{1}">
+            <result name="success" type="json">
+                <param name="root">data</param>
+            </result>
+            <interceptor-ref name="depi"/>
+        </action>
+
+        <action name="coursemgr_*" class="courseMgrApi" method="{1}">
+            <result name="success" type="json">
+                <param name="root">data</param>
+            </result>
+            <interceptor-ref name="depi"/>
+        </action>
+        <action name="scoremgr_*" class="scoreMgrApi" method="{1}">
+            <result name="success" type="json">
+                <param name="root">data</param>
+            </result>
+            <interceptor-ref name="depi"/>
+        </action>
+        <action name="evalmgr_*" class="evalMgrApi" method="{1}">
+            <result name="success" type="json">
+                <param name="root">data</param>
+            </result>
+            <interceptor-ref name="depi"/>
+        </action>
+        <action name="stdcos_*" class="stdCosApi" method="{1}">
+            <result name="success" type="json">
+                <param name="root">data</param>
+            </result>
+            <interceptor-ref name="stdi"/>
+        </action>
+        <action name="stdeval_*" class="stdEvalApi" method="{1}">
+            <result name="success" type="json">
+                <param name="root">data</param>
+            </result>
+            <interceptor-ref name="stdi"/>
+        </action>
+        <action name="teacher_*" class="teacherApi" method="{1}">
+            <result name="success" type="json">
+                <param name="root">data</param>
+            </result>
+            <interceptor-ref name="teai"/>
+        </action>
+
+    </package>
+
+</struts>

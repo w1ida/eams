@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="entity.Scores" table="scores" schema="eams">
+        <composite-id class="entity.ScoresPK">
+            <!--mapped="true"-->
+            <key-property name="sid" column="sid"/>
+            <key-property name="tid" column="tid"/>
+            <key-property name="cosid" column="cosid"/>
+        </composite-id>
+        <property name="sname" column="sname"/>
+        <property name="tname" column="tname"/>
+        <property name="cid" column="cid"/>
+        <property name="cosname" column="cosname"/>
+        <property name="score" column="score" not-null="false"/>
+    </class>
+</hibernate-mapping>

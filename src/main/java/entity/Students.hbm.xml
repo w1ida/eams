@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="entity.Students" table="students" schema="eams">
+        <id name="sid" column="sid"/>
+        <property name="sname" column="sname"/>
+        <property name="cname" column="cname"/>
+        <property name="cid" column="cid"/>
+        <property name="sinfo" column="sinfo"/>
+        <property name="pwd" column="pwd"/>
+    </class>
+    <query name="students.editPassword">
+        update Students set pwd = ?1 where sid = ?2
+    </query>
+    <query name="students.editInfo">
+        update Students set sinfo = ?1 where sid = ?2
+    </query>
+</hibernate-mapping>

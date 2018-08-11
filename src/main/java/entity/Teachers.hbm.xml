@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="entity.Teachers" table="teachers" schema="eams">
+        <id name="tid" column="tid"/>
+        <property name="tname" column="tname"/>
+        <property name="tinfo" column="tinfo"/>
+        <property name="pwd" column="pwd"/>
+    </class>
+    <!-- 命名查询语句 -->
+    <query name="teachers.editPassword">
+        update Teachers set pwd = ?1 where tid = ?2
+    </query>
+    <query name="teachers.editInfo">
+        update Teachers set tinfo= ?1 where tid = ?2
+    </query>
+    <!--userDao.executeUpdate("user.editPassword", password, id);-->
+</hibernate-mapping>

@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="entity.Departments" table="departments" schema="eams">
+        <id name="did" column="did"/>
+        <property name="dname" column="dname"/>
+        <property name="dinfo" column="dinfo"/>
+        <property name="pwd" column="pwd"/>
+    </class>
+    <query name="departments.editPassword">
+        update Departments set pwd = ?1 where did = ?2
+    </query>
+    <query name="departments.editInfo">
+        update Departments set dinfo = ?1 where did = ?2
+    </query>
+</hibernate-mapping>
